@@ -4,7 +4,7 @@
 
 ## Información de la estudiante
 
-Africa Montserrat Rodriguez Garcia [C21211891]; L21211891@tijuana.tecnm.mx
+Tirado Manzo Zulema Guadalupe [23210724]; L23210724@tectijuana.edu.mx
 
 Modelado de Sistemas Fisiológicos
 
