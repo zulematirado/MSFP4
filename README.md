@@ -4,7 +4,7 @@
 
 ## Información de la estudiante
 
-Tirado Manzo Zulema Guadalupe [23210724]; L23210724@tectijuana.edu.mx
+Africa Montserrat Rodriguez Garcia [C21211891]; L21211891@tijuana.tecnm.mx
 
 Modelado de Sistemas Fisiológicos
 
@@ -490,29 +490,21 @@ Los cuatro polos son reales y negativos. Ambas plantas son asintóticamente esta
 
 Las constantes de tiempo dominantes se estiman mediante tau = 1/|p1|. El caso es considerablemente más lento. El polo rápido y el cero están próximos, pero no se cancelan exactamente; para la implementación se conserva el modelo completo de segundo orden.
 
-Efecto de los parámetros y respuesta al escalón
-El aumento de C y la reducción de R2 producen una respuesta más lenta en el caso. R2 también modifica el valor final, mientras que C afecta la respuesta transitoria. Ante el escalón unitario, el control sube rápidamente hacia 0.990099 V y el caso lo hace más lentamente hacia 0.5 V; ambas respuestas son no oscilatorias.
+### 13. Efecto de C y R2 sobre la dinámica
 
-Controlador PID
+El capacitor aumenta de 1 µF a 1000 µF y R2 disminuye de 100 kΩ a 1 kΩ. En conjunto, estas modificaciones producen una respuesta más lenta en el caso. R2 también modifica el valor final, mientras que C afecta la respuesta transitoria.
+
+### 14. Respuesta temporal al escalón
+
+Ante el escalón unitario, el control presenta una subida rápida hacia 0.990099 V y el caso una subida más lenta hacia 0.5 V. Ambas respuestas son no oscilatorias con estos parámetros.
+
+## Controlador PID
+
 Se considera un controlador PID para reducir la diferencia entre la respuesta del caso y la del control, utilizando esta última como referencia. Su efecto se evalúa comparando las respuestas del control, del caso sin controlador y del caso con PID.
 
 ## Simulaciones y resultados
 
-| Representación | Propósito de la comparación |
-| --- | --- |
-| Ecuaciones integro-diferenciales o EDOs | Verificar el modelo obtenido mediante Kirchhoff |
-| Funciones de transferencia | Obtener las respuestas de control y caso |
-| Simscape Electrical | Verificar la topología y las mediciones del circuito |
-| MATLAB | Ejecutar los modelos, extraer las señales y exportar las figuras |
-| Python | Reproducir las funciones de transferencia y el lazo de control |
-| Montaje en protoboard | Contrastar la respuesta experimental con la simulación |
-
-Las simulaciones deben utilizar la misma entrada escalón de 1 V, condiciones iniciales nulas y el intervalo de 0 a 10 s. Los numeradores y denominadores para las funciones de transferencia son:
-
-| Modelo | Numerador | Denominador |
-| --- | --- | --- |
-| Control | `[0.1, 100000]` | `[0.0001, 100.1, 101000]` |
-| Caso | `[0.1, 1000]` | `[0.1, 1000.1, 2000]` |
+Las simulaciones deben utilizar la misma entrada escalón de 1 V, condiciones iniciales nulas y el intervalo de 0 a 10 s.
 
 Las figuras deben identificar Ve(t), Vs,control(t), Vs,caso(t) y Vs,PID(t), según la comparación realizada. El eje horizontal corresponde al tiempo en segundos y el vertical al voltaje en volts.
 
@@ -526,23 +518,9 @@ La comparación debe considerar las tolerancias de resistores, capacitores e ind
 
 Para comparar con el modelo ideal es necesario medir o registrar los componentes realmente utilizados y las condiciones de excitación. Las fotografías y capturas del osciloscopio se integran como evidencia del montaje y no sustituyen el registro de esos valores.
 
-## Discusión
+## Conclusión
 
-El análisis muestra que la condición caso presenta cambios tanto en el transitorio como en el estado estacionario. Su capacitor es mayor y su resistencia R2 es menor, lo que conduce a una respuesta más lenta y de menor amplitud final ante el mismo estímulo.
-
-Ambas plantas son estables en lazo abierto. Sin embargo, la estabilidad por sí sola no garantiza que el caso reproduzca la respuesta del control: existe una diferencia estacionaria de aproximadamente 0.490099 V y una diferencia importante en la rapidez de respuesta.
-
-La salida debe medirse en N2 para que el circuito, las ecuaciones y la función de transferencia describan la misma variable. Medir únicamente sobre R2 cambia el numerador de la transferencia y produce otro modelo de salida. La identificación correcta de nodos y variables es necesaria para realizar una comparación válida.
-
-El controlador se diseña para aproximar la salida del caso a la referencia del control. Sus resultados deben valorarse mediante el error de seguimiento, la rapidez, el sobreimpulso y la estabilidad, considerando también las limitaciones de la implementación analógica.
-
-## Conclusiones
-
-Mediante las leyes de Kirchhoff se obtuvo un modelo de segundo orden que relaciona el estímulo eléctrico de entrada con el voltaje normalizado de salida. Los estados asociados al capacitor y al inductor permiten implementar el modelo sin derivar numéricamente la entrada escalón.
-
-Las condiciones control y caso son estables y sobreamortiguadas. El control converge a aproximadamente 0.990099 V y el caso a 0.5 V ante un escalón de 1 V. La diferencia estacionaria entre ambas respuestas es aproximadamente 0.490099 V.
-
-La modificación de C y R2 cambia la posición de los polos y la dinámica del circuito. El PID proporciona una estructura para corregir el seguimiento del caso, pero su desempeño debe comprobarse mediante la sintonización, las simulaciones y las mediciones experimentales. La analogía permite estudiar estas propiedades sin interpretar directamente los componentes eléctricos como parámetros clínicos medidos.
+El análisis permitió obtener un modelo de segundo orden del sistema endócrino. Ambos circuitos son estables, pero el caso responde más lentamente y alcanza un voltaje final menor. La analogía eléctrica permite comprender estas diferencias y plantear el uso de un PID para aproximar la respuesta del caso a la del control.
 
 **Palabras clave:** Sistema endócrino; Analogía eléctrica; Leyes de Kirchhoff; Función de transferencia; Error estacionario; Estabilidad; Controlador PID; Simscape Electrical; MATLAB; Python.
 
