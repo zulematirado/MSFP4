@@ -4,7 +4,7 @@
 
 ## Información de la estudiante
 
-Africa Montserrat Rodriguez Garcia [C21211891]; L21211891@tijuana.tecnm.mx
+Tirado Manzo Zulema Guadalupe [23210724]; L23210724@tectijuana.edu.mx
 
 Modelado de Sistemas Fisiológicos
 
@@ -490,115 +490,11 @@ Los cuatro polos son reales y negativos. Ambas plantas son asintóticamente esta
 
 Las constantes de tiempo dominantes se estiman mediante tau = 1/|p1|. El caso es considerablemente más lento. El polo rápido y el cero están próximos, pero no se cancelan exactamente; para la implementación se conserva el modelo completo de segundo orden.
 
-### 13. Efecto de C y R2 sobre la dinámica
+Efecto de los parámetros y respuesta al escalón
+El aumento de C y la reducción de R2 producen una respuesta más lenta en el caso. R2 también modifica el valor final, mientras que C afecta la respuesta transitoria. Ante el escalón unitario, el control sube rápidamente hacia 0.990099 V y el caso lo hace más lentamente hacia 0.5 V; ambas respuestas son no oscilatorias.
 
-Dividiendo el denominador entre R1LC:
-
-$$
-s^2+\left(\frac1{R_1C}+\frac{R_2}{L}\right)s
-+\frac{R_1+R_2}{R_1LC}.
-$$
-
-En la forma estándar de segundo orden:
-
-$$
-\omega_n=\sqrt{\frac{R_1+R_2}{R_1LC}},
-$$
-
-$$
-\zeta=\frac{L+R_1R_2C}{2\sqrt{R_1LC(R_1+R_2)}}.
-$$
-
-El capacitor aumenta de 1 µF a 1000 µF y R2 disminuye de 100 kΩ a 1 kΩ. En conjunto, estas modificaciones desplazan los polos hacia el origen y producen una respuesta más lenta. La reducción de R2 también modifica el divisor de voltaje en corriente continua y disminuye el valor final de aproximadamente 0.990099 V a 0.5 V.
-
-La capacitancia no aparece en G(0), por lo que no modifica la ganancia estática para R1 y R2 fijos. Sí modifica los polos y la respuesta transitoria. La influencia de cada parámetro debe analizarse manteniendo los demás constantes si se desea separar sus efectos.
-
-### 14. Respuesta temporal al escalón
-
-Para el modelo general:
-
-$$
-V_s(s)=\frac{Ls+R_2}{s(as^2+bs+c)}.
-$$
-
-Con polos distintos p1 y p2:
-
-$$
-V_s(s)=\frac{K}{s}+\frac{A_1}{s-p_1}+\frac{A_2}{s-p_2},\qquad K=\frac{R_2}{R_1+R_2}.
-$$
-
-Los residuos se calculan como:
-
-$$
-A_1=\frac{Lp_1+R_2}{a p_1(p_1-p_2)},\qquad
-A_2=\frac{Lp_2+R_2}{a p_2(p_2-p_1)}.
-$$
-
-Por lo tanto:
-
-$$
-\boxed{V_s(t)=\left[K+A_1e^{p_1t}+A_2e^{p_2t}\right]u(t)}.
-$$
-
-Para cada condición se sustituyen sus parámetros y polos. Con condiciones iniciales nulas, la salida comienza en cero; sus términos exponenciales desaparecen y la salida converge a K. El bosquejo esperado para el control es una subida rápida hacia 0.990099 V y para el caso una subida más lenta hacia 0.5 V. Ambas respuestas son no oscilatorias con estos parámetros.
-
-La comparación de 0 a 10 s permite observar el estado estacionario de ambas plantas, pero el transitorio del control ocurre en milisegundos. Conviene conservar una vista ampliada de ese intervalo para verificar su dinámica sin confundir la resolución de la gráfica con el paso interno del solver.
-
-## Diseño del controlador PID
-
-La respuesta del control se utiliza como referencia r(t) = Vs,control(t). Para cerrar el lazo sobre el caso, la señal realimentada corresponde a su salida controlada:
-
-$$
-e_{PID}(t)=V_{s,control}(t)-V_{s,PID}(t).
-$$
-
-La respuesta del caso sin controlador se conserva como comparación de lazo abierto. El PID ideal se expresa como:
-
-$$
-u_c(t)=k_Pe_{PID}(t)+k_I\int_0^t e_{PID}(\lambda)\,d\lambda+k_D\frac{de_{PID}(t)}{dt}.
-$$
-
-$$
-C_{PID}(s)=k_P+\frac{k_I}{s}+k_Ds.
-$$
-
-Para una estructura estándar de realimentación unitaria con P(s) = Gcaso(s):
-
-$$
-T(s)=\frac{C_{PID}(s)P(s)}{1+C_{PID}(s)P(s)},\qquad
-\frac{E_{PID}(s)}{R(s)}=\frac1{1+C_{PID}(s)P(s)}.
-$$
-
-Si P(s) = (Ls + R2)/(as² + bs + c), la ecuación característica con PID ideal es:
-
-$$
-s(as^2+bs+c)+(k_Ds^2+k_Ps+k_I)(Ls+R_2)=0.
-$$
-
-Desarrollando:
-
-$$
-(a+Lk_D)s^3+(b+R_2k_D+Lk_P)s^2
-+(c+R_2k_P+Lk_I)s+R_2k_I=0.
-$$
-
-La estabilidad del lazo debe verificarse con las ganancias sintonizadas. Si se utiliza un filtro derivativo, se debe considerar su función de transferencia al calcular los polos del lazo cerrado.
-
-Una acción integral no nula permite eliminar idealmente el error ante una referencia que converge a un valor constante, siempre que el lazo sea estable y no existan saturaciones que impidan el seguimiento. Esta propiedad no demuestra por sí sola una mejora transitoria: debe verificarse con la simulación.
-
-### Sintonización e implementación analógica
-
-Las ganancias kP, kI y kD se obtienen con Tune de Simulink. Con ellas se calculan los componentes del PID analógico según la topología elegida. Por ejemplo, para ramas inversoras independientes y un sumador que restituya el signo:
-
-$$
-k_P=\frac{R_f}{R_{in,P}},\qquad
-k_I=\frac1{R_{in,I}C_I},\qquad
-k_D=R_{f,D}C_D.
-$$
-
-Estas relaciones suponen ponderación unitaria en el sumador y una implementación ideal de cada rama. Un PID práctico incorpora limitaciones de banda, particularmente en la derivada, y debe simularse con los componentes comerciales seleccionados.
-
-Las ganancias y la topología analógica final no están incluidas en los documentos proporcionados. Sus valores, resistencias y capacitores deben registrarse a partir de la sintonización y del circuito utilizado; no se asignan valores sin ese resultado.
+Controlador PID
+Se considera un controlador PID para reducir la diferencia entre la respuesta del caso y la del control, utilizando esta última como referencia. Su efecto se evalúa comparando las respuestas del control, del caso sin controlador y del caso con PID.
 
 ## Simulaciones y resultados
 
