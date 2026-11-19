@@ -497,22 +497,6 @@ Ante el escalón unitario, el control presenta una subida rápida hacia 0.990099
 
 Se considera un controlador PID para reducir la diferencia entre la respuesta del caso y la del control, utilizando esta última como referencia. Su efecto se evalúa comparando las respuestas del control, del caso sin controlador y del caso con PID.
 
-## Simulaciones y resultados
-
-Las simulaciones deben utilizar la misma entrada escalón de 1 V, condiciones iniciales nulas y el intervalo de 0 a 10 s.
-
-Las figuras deben identificar Ve(t), Vs,control(t), Vs,caso(t) y Vs,PID(t), según la comparación realizada. El eje horizontal corresponde al tiempo en segundos y el vertical al voltaje en volts.
-
-Los valores finales, errores y polos indicados en este README son resultados analíticos. Los documentos proporcionados no incluyen las gráficas finales, ganancias sintonizadas ni mediciones del montaje; por ello, no se afirma una concordancia experimental ni una mejora cuantificada del PID.
-
-## Comparación con el montaje experimental
-
-En laboratorio se construyen los circuitos del control y del caso y se registran simultáneamente entrada y salida con el osciloscopio. Una onda cuadrada puede aproximar una sucesión de escalones si su semiperiodo permite observar el establecimiento de la respuesta y se registran amplitud y nivel de offset.
-
-La comparación debe considerar las tolerancias de resistores, capacitores e inductores, la resistencia interna del inductor, la resistencia serie equivalente del capacitor, la impedancia del generador y la carga de las sondas. En el controlador también influyen los límites de alimentación, la saturación y el ancho de banda de los amplificadores operacionales.
-
-Para comparar con el modelo ideal es necesario medir o registrar los componentes realmente utilizados y las condiciones de excitación. Las fotografías y capturas del osciloscopio se integran como evidencia del montaje y no sustituyen el registro de esos valores.
-
 ## Conclusión
 
 El análisis permitió obtener un modelo de segundo orden del sistema endócrino. Ambos circuitos son estables, pero el caso responde más lentamente y alcanza un voltaje final menor. La analogía eléctrica permite comprender estas diferencias y plantear el uso de un PID para aproximar la respuesta del caso a la del control.
