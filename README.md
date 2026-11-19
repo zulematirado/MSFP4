@@ -44,6 +44,7 @@ El circuito de esta práctica representa de forma simplificada algunas de esas p
 
 ### Diagrama biológico en BioRender
 
+<img width="1500" height="1049" alt="Compartimento hormonal etiquetado C" src="https://github.com/user-attachments/assets/f9a4de54-db91-454a-8db7-e22c8810fd17" />
 
 **Figura 1.** Analogía entre el estímulo para la secreción hormonal, su transporte, el almacenamiento temporal y la respuesta del tejido diana. El diagrama deberá relacionar estos procesos con Ve(t), Fe(t), R1, C, L, R2, Fs(t) y Vs(t).
 
