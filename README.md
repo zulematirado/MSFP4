@@ -1,4 +1,4 @@
-[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/)
+[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=zulematirado/MSFP4)
 
 # Práctica 4: Modelado y control del sistema endócrino
 
@@ -32,10 +32,9 @@ El desarrollo comprende el análisis matemático, la simulación en MATLAB, Simu
 4. Obtener las funciones de transferencia del control y del caso mediante la transformada de Laplace.
 5. Determinar el valor final y el error estacionario ante una entrada escalón unitario.
 6. Calcular los polos, establecer la estabilidad y analizar el efecto de las modificaciones de C y R2.
-7. Implementar las ecuaciones y las funciones de transferencia en MATLAB/Simulink y verificar el circuito en Simscape Electrical.
+7. Implementar las ecuaciones y las funciones de transferencia en MATLAB/Simulink y verificar el circuito.
 8. Sintonizar un controlador PID que permita al caso seguir la respuesta del control.
 9. Reproducir las respuestas en Python y comparar las diferentes representaciones.
-10. Calcular los componentes del controlador analógico a partir de las ganancias obtenidas y documentar las pruebas experimentales.
 
 ## Descripción detallada del sistema
 
@@ -45,10 +44,6 @@ El circuito de esta práctica representa de forma simplificada algunas de esas p
 
 ### Diagrama biológico en BioRender
 
-**Espacio reservado para insertar el diagrama biológico del sistema endócrino.**
-
-<!-- Al tener la imagen, súbela a la misma carpeta de este README con el nombre biorender_endocrino.png y elimina los delimitadores de comentario de la siguiente línea. -->
-<!-- ![Diagrama biológico del sistema endócrino](biorender_endocrino.png) -->
 
 **Figura 1.** Analogía entre el estímulo para la secreción hormonal, su transporte, el almacenamiento temporal y la respuesta del tejido diana. El diagrama deberá relacionar estos procesos con Ve(t), Fe(t), R1, C, L, R2, Fs(t) y Vs(t).
 
@@ -530,16 +525,13 @@ La documentación de la práctica se organiza con los siguientes elementos, conf
 
 1. README.md con la interpretación fisiológica y el análisis matemático.
 2. Imagen del diagrama biológico elaborado en BioRender.
-3. Circuitos del control y del caso con nodos y variables identificados.
-4. Cuaderno computacional de MATLAB [.mlx] y su exportación [.pdf].
-5. Modelos de Simulink [.slx] y circuitos en Simscape Electrical.
-6. Código fuente de Python [.py].
-7. Gráficas de las respuestas en lazo abierto y cerrado.
-8. Evidencia de la sintonización y ganancias del PID.
-9. Cálculo de componentes y esquema del controlador analógico.
-10. Fotografías de los montajes y capturas del osciloscopio.
-11. Comparación entre simulación y experimentación.
-12. Archivo CITATION.cff con la información de la estudiante y del repositorio.
+3. Cuaderno computacional de MATLAB [.mlx] y su exportación [.pdf].
+4. Modelos de Simulink [.slx].
+5. Código fuente de Python [.py].
+6. Gráficas de las respuestas.
+7. Cálculo de componentes y esquema del controlador analógico.
+8. Capturas del osciloscopio.
+9. Archivo CITATION.cff con la información de la estudiante y del repositorio.
 
 ## Referencias
 
