@@ -1,0 +1,23 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'Práctica 4: Modelado y control del sistema endócrino'
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Zulema Guadalupe
+    family-names: Tirado Manzo
+    email: l23210724@tectijuana.edu.mx
+    affiliation: TecNM / IT Tijuana
+repository-code: 'https://github.com/zulematirado/MSFP4'
+keywords:
+  - Sistema endócrino
+  - Función de transferencia
+  - Error estacionario
+  - 'Estabilidad '
+  - Controlador PID
+license: BSD-2-Clause
+date-released: '2026-11-18'
